@@ -30,6 +30,7 @@ section {
 }
 
 footer {
+    padding-top: 50px;
     height: 200px;
 }
 
@@ -37,12 +38,9 @@ h2, h3 {
     margin: 0;
 }
 
-a {
-    text-decoration: none;
-}
-
-a:link, a:visited {
+a, a:link, a:visited {
     color: #fff;
+    text-decoration: none;
 }
 
 .bg-red {
