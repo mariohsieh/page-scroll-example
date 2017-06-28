@@ -1,10 +1,14 @@
 html, body {
     margin: 0;
     padding: 0;
+    color: #fff;
 }
 
+
+/***************
+    header 
+***************/
 header {
-    color: white;
     height: 50px;
     width: 100%;
     position: fixed;
@@ -23,9 +27,13 @@ header ul li {
     padding: 0 20px;
 }
 
+
+/***************
+    pages 
+***************/
 section {
     width: 100%;
-    height: 500px;
+    min-height: 500px;
     padding-top: 50px;
 }
 
@@ -34,13 +42,28 @@ footer {
     height: 200px;
 }
 
-h2, h3 {
-    margin: 0;
+.bg-base {
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    display: table;
+    background-attachment: fixed;
 }
 
-a, a:link, a:visited {
-    color: #fff;
-    text-decoration: none;
+.one {
+    background-image: url('../images/bushes.jpg');
+}
+
+.two {
+    background-image: url('../images/cactus.jpg');
+}
+
+.three {
+    background-image: url('../images/desert.jpg');
+}
+
+.four {
+    background-image: url('../images/mugs.jpg');
 }
 
 .bg-red {
@@ -64,9 +87,38 @@ a, a:link, a:visited {
 }
 
 .bg-black {
-    background-color: black;
+    background-color: rgba(0,0,0,.75);
 }
 
+
+/***************
+    text 
+***************/
 .text-center {
     text-align: center;
+}
+
+h2, h3 {
+    margin: 0;
+}
+
+a, a:link, a:visited {
+    color: #fff;
+    text-decoration: none;
+}
+
+
+/***************
+    foreground objects 
+***************/
+.bug {
+    background-image: url('../images/bug.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    position: fixed;
+    width: 100px;
+    height: auto;
+    right: 100px;
+    bottom: 0;
 }
