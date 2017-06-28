@@ -5,11 +5,21 @@ $(document).ready(function() {
      */
 
 
-    $(window).bind('scroll', function() {
+    $(window).on('scroll', function() {
+    // $(window).bind('scroll', function() {
+        $('.fg-objects').css('display', 'block');
+
         var scrollY = $(window).scrollTop();
-        scrollY *= 1.5;
+
+        console.log(scrollY);
+
+        // scrollY *= 1.5;
         $('.bug').css({
-            top: -scrollY,
+            top: -scrollY + 0.9,
+            transform: 'rotateX(10deg)'
+        });
+        $('.star').css({
+            top: -scrollY + 1.3,
             transform: 'rotateX(10deg)'
         });
         // $('.bug').css('top', -1);

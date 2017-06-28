@@ -116,9 +116,23 @@ a, a:link, a:visited {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    position: fixed;
+    /*position: fixed;*/
+    left: 100px;
+    top: 500px;
+    display: none;
     width: 100px;
     height: auto;
-    right: 100px;
-    bottom: 0;
+}
+
+.star {
+    background-image: url('../images/star.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    position: absolute;
+    left: 500px;
+    top: 750px;
+    display: none;
+    width: 200px;
+    height: 200px;
 }
