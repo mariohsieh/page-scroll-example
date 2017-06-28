@@ -7,36 +7,55 @@
     </head>
     <body>
         <header class='bg-black'>
+            <!--
+                menu for the page links
+                each href value corresponds to the ID of each page
+                clicking on a page link will scroll to the website to corresponding page  
+            -->
             <ul>
                 <li>
-                    <h3><a class='page-link' href='#one'>one</a></h3>
+                    <h3>
+                        <a class='page-link' href='#one'>one</a>
+                    </h3>
                 </li>
                 <li>
-                    <h3><a class='page-link' href='#two'>two</a></h3>
+                    <h3>
+                        <a class='page-link' href='#two'>two</a>
+                    </h3>
                 </li>
                 <li>
-                    <h3><a class='page-link' href='#three'>three</a></h3>
+                    <h3>
+                        <a class='page-link' href='#three'>three</a>
+                    </h3>
                 </li>
                 <li>
-                    <h3><a class='page-link' href='#four'>four</a></h3>
+                    <h3>
+                        <a class='page-link' href='#four'>four</a>
+                    </h3>
                 </li>
             </ul>
         </header>
         <main>
-            <section id='one' class='bg-red'>
+            <!--
+                main pages of the website
+                each section element represents a page
+                the ID is used as the reference point when navigating between pages
+            -->
+            <section id='one' class='one bg-base'>
                 <h2 class='text-center'>page one</h2>
             </section>
-            <section id='two' class='bg-yellow'>
+            <section id='two' class='two bg-base'>
                 <h2 class='text-center'>page two</h2>
             </section>
-            <section id='three' class='bg-green'>
+            <section id='three' class='three bg-base'>
                 <h2 class='text-center'>page three</h2>
             </section>
-            <section id='four' class='bg-blue'>
+            <section id='four' class='four bg-base'>
                 <h2 class='text-center'>page four</h2>
+                <span class='bug'></span>
             </section>
         </main>
-        <footer class='bg-orange'>
+        <footer class='bg-black'>
             <h2 class='text-center'>footer</h2>
         </footer>
         <script type='text/javascript' src='https://code.jquery.com/jquery-3.2.1.min.js'></script>
