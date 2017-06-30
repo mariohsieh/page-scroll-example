@@ -1,6 +1,6 @@
 html, body {
-    margin: 0;
     padding: 0;
+    margin: 0;
     color: #fff;
 }
 
@@ -12,6 +12,7 @@ header {
     height: 50px;
     width: 100%;
     position: fixed;
+    z-index: 10;
 }
 
 header ul {
@@ -34,7 +35,7 @@ header ul li {
 section {
     width: 100%;
     min-height: 500px;
-    padding-top: 50px;
+    padding-top: 100px;
 }
 
 footer {
@@ -48,6 +49,7 @@ footer {
     background-size: cover;
     display: table;
     background-attachment: fixed;
+    /*position: relative;*/
 }
 
 .one {
@@ -130,9 +132,10 @@ a, a:link, a:visited {
     background-position: center;
     background-size: contain;
     position: absolute;
-    left: 500px;
-    top: 750px;
-    display: none;
-    width: 200px;
-    height: 200px;
+    /*visibility: hidden;*/
+    width: 100px;
+    height: 100px;
+    top: 1500px;
+    z-index: 5;
+    opacity: 0;
 }

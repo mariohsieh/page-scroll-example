@@ -4,24 +4,48 @@ $(document).ready(function() {
      * scrollable foreground images
      */
 
+    var starPosition = $('.star').offset().top,
+        documentHeight = $(document).height(),
+        scrolledPosition = $(window).scrollTop();
 
-    $(window).on('scroll', function() {
+    function animateStar(scrolledPosition) {
+        var currentStarPosition = starPosition - (scrolledPosition * 1.0),
+            rotationValue = scrolledPosition / documentHeight * 5400,
+            fadeStart = 300,
+            fadeApex = 550,
+            fadeEnd = 750,
+            fadeInValue = (scrolledPosition - fadeStart) * .005,
+            fadeOutValue = 1 - ((scrolledPosition - fadeApex) * .005);
+
+        $('.star')
+            .css('transform', 'rotate(' + rotationValue + 'deg)')
+            .css('top', currentStarPosition);
+
+        // console.log('star position: ' + starPosition);
+        console.log('scrolled position: ' + scrolledPosition);
+        // console.log('currentStarPosition: ' + currentStarPosition);
+        // console.log('document height', documentHeight);
+
+        if (scrolledPosition >= fadeStart && scrolledPosition < fadeApex) {
+            $('.star').css('opacity', fadeInValue);
+        } else if (scrolledPosition >= fadeApex && scrolledPosition < fadeEnd) {
+            $('.star').css('opacity', fadeOutValue);
+        }
+    }
+
+    animateStar(scrolledPosition);
+
     // $(window).bind('scroll', function() {
-        $('.fg-objects').css('display', 'block');
+    $(window).on('scroll', function() {
+        scrolledPosition = $(window).scrollTop();
 
-        var scrollY = $(window).scrollTop();
+        animateStar(scrolledPosition);
 
-        console.log(scrollY);
-
-        // scrollY *= 1.5;
-        $('.bug').css({
-            top: -scrollY + 0.9,
-            transform: 'rotateX(10deg)'
-        });
-        $('.star').css({
-            top: -scrollY + 1.3,
-            transform: 'rotateX(10deg)'
-        });
+        // scrolledAmount *= 1.5;
+        // $('.bug').css({
+        //     top: -scrolltop * .2 + 'px',
+        //     transform: 'rotateX(10deg)'
+        // });
         // $('.bug').css('top', -1);
         // $('.bug').animate({ top: '-=10' }, 10);
     });
@@ -59,6 +83,6 @@ $(document).ready(function() {
         // 
         $('html, body').animate({
             scrollTop: $(page).offset().top
-        }, 500);
+        }, 1000);
     });
 });
