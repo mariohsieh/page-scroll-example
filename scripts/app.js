@@ -4,24 +4,47 @@ $(document).ready(function() {
      * scrollable foreground images
      */
 
-
-    $(window).bind('scroll', function() {
-        var scrollY = $(window).scrollTop();
-        scrollY *= 1.5;
-        $('.bug').css({
-            top: -scrollY,
-            transform: 'rotateX(10deg)'
-        });
-        // $('.bug').css('top', -1);
-        // $('.bug').animate({ top: '-=10' }, 10);
-    });
-
-
+    var starPosition = $('.star').offset().top, // position of star from top
+        documentHeight = $(document).height(), // total length of the document
+        scrolledPosition = $(window).scrollTop(); // how far down the user has scrolled
 
 
     /*
-     * event handler for nav menu click
+     * logic to animate a star
      */
+    function animateStar(scrolledPosition) {
+        var currentStarPosition = starPosition - (scrolledPosition * 1.0), // calculates distance from top relative to scrolled position
+            rotationValue = scrolledPosition / documentHeight * 5400, // calculates a rotation degree relative to scrolled position
+            fadeStart = 300, // scrolled position to start fading into visibility
+            fadeApex = 550, // scrolled position to be completely visible
+            fadeEnd = 750, // scrolled position to be invisible again
+            fadeInValue = (scrolledPosition - fadeStart) * .005, // calculates fade in opacity relative to scrolled position
+            fadeOutValue = 1 - ((scrolledPosition - fadeApex) * .005); // calculates fade out opacity relative to scrolled position
+
+        $('.star')
+            .css('transform', 'rotate(' + rotationValue + 'deg)') // rotate the star 
+            .css('top', currentStarPosition); // moves the star by reseting the top value
+
+        // conditionals to determine whether to fade in/out based on scrolled position
+        if (scrolledPosition >= fadeStart && scrolledPosition < fadeApex) {
+            $('.star').css('opacity', fadeInValue);
+        } else if (scrolledPosition >= fadeApex && scrolledPosition < fadeEnd) {
+            $('.star').css('opacity', fadeOutValue);
+        }
+    }
+
+    animateStar(scrolledPosition);
+
+    /*
+     *******************************************
+     * event handlers
+     *******************************************
+     */
+
+    $(window).on('scroll', function() {
+        scrolledPosition = $(window).scrollTop(); // save new scrolled position
+        animateStar(scrolledPosition); // call animateStar function on each scroll for new star position/rotation 
+    });
 
     // the selector of '.page-link' applies to any element with
     // that class.  if you look at the '<a>' tags in the nav menu,
@@ -40,15 +63,12 @@ $(document).ready(function() {
         // the '.attr('name of attribute we want')' method grabs the attribute value
         // i've included a console.log so you can see the value we are grabbing.
         var page = $(this).attr('href');
-        console.log(page);
 
         /*
-         * scroll to target page 
+         * jQuery method to animate the webpage to desired section
          */
-
-        // 
         $('html, body').animate({
             scrollTop: $(page).offset().top
-        }, 500);
+        }, 1000);
     });
 });
