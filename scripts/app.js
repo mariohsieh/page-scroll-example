@@ -4,28 +4,28 @@ $(document).ready(function() {
      * scrollable foreground images
      */
 
-    var starPosition = $('.star').offset().top,
-        documentHeight = $(document).height(),
-        scrolledPosition = $(window).scrollTop();
+    var starPosition = $('.star').offset().top, // position of star from top
+        documentHeight = $(document).height(), // total length of the document
+        scrolledPosition = $(window).scrollTop(); // how far down the user has scrolled
 
+
+    /*
+     * logic to animate a star
+     */
     function animateStar(scrolledPosition) {
-        var currentStarPosition = starPosition - (scrolledPosition * 1.0),
-            rotationValue = scrolledPosition / documentHeight * 5400,
-            fadeStart = 300,
-            fadeApex = 550,
-            fadeEnd = 750,
-            fadeInValue = (scrolledPosition - fadeStart) * .005,
-            fadeOutValue = 1 - ((scrolledPosition - fadeApex) * .005);
+        var currentStarPosition = starPosition - (scrolledPosition * 1.0), // calculates distance from top relative to scrolled position
+            rotationValue = scrolledPosition / documentHeight * 5400, // calculates a rotation degree relative to scrolled position
+            fadeStart = 300, // scrolled position to start fading into visibility
+            fadeApex = 550, // scrolled position to be completely visible
+            fadeEnd = 750, // scrolled position to be invisible again
+            fadeInValue = (scrolledPosition - fadeStart) * .005, // calculates fade in opacity relative to scrolled position
+            fadeOutValue = 1 - ((scrolledPosition - fadeApex) * .005); // calculates fade out opacity relative to scrolled position
 
         $('.star')
-            .css('transform', 'rotate(' + rotationValue + 'deg)')
-            .css('top', currentStarPosition);
+            .css('transform', 'rotate(' + rotationValue + 'deg)') // rotate the star 
+            .css('top', currentStarPosition); // moves the star by reseting the top value
 
-        // console.log('star position: ' + starPosition);
-        console.log('scrolled position: ' + scrolledPosition);
-        // console.log('currentStarPosition: ' + currentStarPosition);
-        // console.log('document height', documentHeight);
-
+        // conditionals to determine whether to fade in/out based on scrolled position
         if (scrolledPosition >= fadeStart && scrolledPosition < fadeApex) {
             $('.star').css('opacity', fadeInValue);
         } else if (scrolledPosition >= fadeApex && scrolledPosition < fadeEnd) {
@@ -35,27 +35,16 @@ $(document).ready(function() {
 
     animateStar(scrolledPosition);
 
-    // $(window).bind('scroll', function() {
-    $(window).on('scroll', function() {
-        scrolledPosition = $(window).scrollTop();
-
-        animateStar(scrolledPosition);
-
-        // scrolledAmount *= 1.5;
-        // $('.bug').css({
-        //     top: -scrolltop * .2 + 'px',
-        //     transform: 'rotateX(10deg)'
-        // });
-        // $('.bug').css('top', -1);
-        // $('.bug').animate({ top: '-=10' }, 10);
-    });
-
-
-
-
     /*
-     * event handler for nav menu click
+     *******************************************
+     * event handlers
+     *******************************************
      */
+
+    $(window).on('scroll', function() {
+        scrolledPosition = $(window).scrollTop(); // save new scrolled position
+        animateStar(scrolledPosition); // call animateStar function on each scroll for new star position/rotation 
+    });
 
     // the selector of '.page-link' applies to any element with
     // that class.  if you look at the '<a>' tags in the nav menu,
@@ -74,13 +63,10 @@ $(document).ready(function() {
         // the '.attr('name of attribute we want')' method grabs the attribute value
         // i've included a console.log so you can see the value we are grabbing.
         var page = $(this).attr('href');
-        console.log(page);
 
         /*
-         * scroll to target page 
+         * jQuery method to animate the webpage to desired section
          */
-
-        // 
         $('html, body').animate({
             scrollTop: $(page).offset().top
         }, 1000);
